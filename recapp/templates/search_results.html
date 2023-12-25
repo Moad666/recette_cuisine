@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search page</title>
+</head>
+<body>
+    <div class="">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <h2 class="mb-3 mt-4 border-top border-dark">Search Results</h2>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                {% for recette in recettes %}
+                    <div class="col">
+                        <div class="card bg-black rounded-3 shadow bg-light mt-2">
+                            <img class="card-img-top rounded-3" src="{{ recette.image_url }}" alt="{{ recette.title }}">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{{ recette.title }}</h4>
+                                <p class="card-text">{{ recette.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        </div><div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% endif %}
+                {% empty %}
+                    <p>No results found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
